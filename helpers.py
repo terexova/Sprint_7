@@ -1,7 +1,7 @@
 import allure
 import requests
 import random
-import data
+import url
 from faker import Faker
 
 @allure.step('Создание нового курьера')
@@ -19,13 +19,14 @@ def generate_registration():
         "firstName": first_name
     }
 
-    response = requests.post(data.URL.URL_COURIER, data=payload)
+    response = requests.post(url.URL_BASE + url.URL_COURIER, data=payload)
 
     if response.status_code == 201:
         login_pass.append(login)
         login_pass.append(password)
         login_pass.append(first_name)
     return login_pass
+
 
 @allure.step('Данные для регистрации курьера')
 def create_new_courier():
@@ -40,9 +41,9 @@ def create_new_courier():
 
 @allure.step('Удаление курьера')
 def delete_courier(authorisation):
-    response = requests.post(data.URL.URL_LOGIN, data=authorisation)
+    response = requests.post(url.URL_BASE + url.URL_LOGIN, data=authorisation)
     courier_id = str(response.json()['id'])
-    delete_response = requests.delete(data.URL.URL_DELETE + courier_id, data={'id': courier_id})
+    delete_response = requests.delete(url.URL_BASE + url.URL_DELETE + courier_id, data={'id': courier_id})
     assert delete_response.status_code == 200
 
 
