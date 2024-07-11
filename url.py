@@ -1,4 +1,4 @@
-URL_BASE = 'https://qa-scooter.praktikum-services.ru/'
+URL_BASE = 'https://qa-scooter.praktikum-services.ru'
 URL_COURIER = '/api/v1/courier'
 URL_LOGIN = '/api/v1/courier/login'
 URL_DELETE = '/api/v1/courier/'
